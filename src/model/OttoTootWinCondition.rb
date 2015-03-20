@@ -1,5 +1,9 @@
 class OttoTootWinCondition
 
+  def OttoTootWinCondition.name
+    'OTTO_TOOT'
+  end
+
   # T and O are the token T and O
   def initialize(t,o)
     @T = t

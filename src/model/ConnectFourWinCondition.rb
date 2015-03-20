@@ -1,5 +1,9 @@
 class ConnectFourWinCondition
 
+  def ConnectFourWinCondition.name
+    'CONNECT_FOUR'
+  end
+
   # if the win condition has been met, return false. Otherwise, return the user
   # who wins.
   # input:

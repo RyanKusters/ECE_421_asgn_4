@@ -10,7 +10,7 @@ class TestConnectFourWinCondition < Test::Unit::TestCase
     @winCondition = ConnectFourWinCondition.new
     @xSize = 7
     @ySize = 6
-    @board = Board.new([@xSize,@ySize])
+    @board = Board.new([@ySize,@xSize])
   end
 
   def teardown

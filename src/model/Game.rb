@@ -3,6 +3,9 @@ require_relative 'Board'
 # overall state of the game
 class Game
 
+  def Game.CHANGE_TURN_FLAG
+    'CHANGE_TURN'
+  end
   def Game.WIN_FLAG
     'WIN'
   end
@@ -41,7 +44,7 @@ class Game
     newPieceRow = @board.put(@pieces[turn],column)
     if newPieceRow
       _changeTurn
-      _notifyObservers(@board)
+      _notifyObservers(Game.CHANGE_TURN_FLAG,@board,turn)
       win = @winCondition.win(@board,newPieceRow,column)
       if win
         _notifyObservers(Game.WIN_FLAG,win)

@@ -10,7 +10,7 @@ class TestOttoTootWinCondition < Test::Unit::TestCase
     @winCondition = OttoTootWinCondition.new(@T,@o)
     @xSize = 7
     @ySize = 6
-    @board = Board.new([@xSize,@ySize])
+    @board = Board.new([@ySize,@xSize])
   end
 
   def teardown

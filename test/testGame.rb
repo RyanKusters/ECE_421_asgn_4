@@ -17,7 +17,7 @@ class TestGame < Test::Unit::TestCase
     @winCondition = MockWinCondition.new
     @xSize = 7
     @ySize = 6
-    @game = Game.new(pieces,@winCondition,[@xSize,@ySize])
+    @game = Game.new(pieces,@winCondition,[@ySize,@xSize])
     @observer = MockObserver.new
     @game.addObserver(@observer)
   end
@@ -73,7 +73,9 @@ class TestGame < Test::Unit::TestCase
   # ensure that observers all called when a piece is played
   def testPlaceObserver
     @game.placePiece(0)
-    assert_equal(@observer.lastNotification[0], @game.board, 'correct board not sent in notification')
+    assert_equal(@observer.lastNotification[0], Game.CHANGE_TURN_FLAG, 'change turn notification not sent')
+    assert_equal(@observer.lastNotification[1], @game.board, 'correct board not sent in notification')
+    assert_equal(@observer.lastNotification[2], @player2, 'correct player not sent in notification')
   end
 
   # ensure that when the win condition is met, the correct notification is sent (including both the last piece that was
@@ -81,7 +83,7 @@ class TestGame < Test::Unit::TestCase
   def testWin
     @winCondition.setWin(@player1)
     @game.placePiece(0)
-    assert_equal(@observer.notifications[-2][0], @game.board, 'correct board not sent in notification')
+    assert_equal(@observer.notifications[-2][1], @game.board, 'correct board not sent in notification')
     assert_equal(@observer.notifications[-1][0], Game.WIN_FLAG, 'win condition not sent in notification')
     assert_equal(@observer.notifications[-1][1], @player1, 'correct player not sent in win notification')
   end

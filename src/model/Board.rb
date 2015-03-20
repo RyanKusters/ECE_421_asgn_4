@@ -1,8 +1,8 @@
 # the board representation. Essentially just a grid of pieces.
 class Board
   def initialize(dims)
-    @board = (0..dims[1]-1).collect { |i|
-      (0..dims[0]-1).collect {0}
+    @board = (0..dims[0]-1).collect { |i|
+      (0..dims[1]-1).collect {0}
     }
   end
 
@@ -45,6 +45,12 @@ class Board
   # return true if the board is full
   def full
     return !(0..@board[0].length-1).any? {|i| _firstEmptyRowOfColumn(i) != nil}
+  end
+
+  # return true if the given column is full
+  # TODO: unit tests
+  def columnFull(index)
+    return _firstEmptyRowOfColumn(index) ? true : false
   end
 
   # get the first empty row in the given column, or nil if there is none

@@ -7,7 +7,7 @@ class TestBoard < Test::Unit::TestCase
     @pieceType2 = '2'
     @xSize = 7
     @ySize = 6
-    @board = Board.new([@xSize,@ySize])
+    @board = Board.new([@ySize,@xSize])
   end
 
   def teardown
